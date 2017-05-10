@@ -31,11 +31,14 @@ defmodule NucleotideCount do
 
   ## Examples
 
+  lss: taking my cue from valim himself, http://stackoverflow.com/questions/29924170/elixir-looping-through-and-adding-to-map
+
   iex> NucleotideCount.histogram('AATAA')
   %{?A => 4, ?T => 1, ?C => 0, ?G => 0}
   """
   @spec histogram([char]) :: map
   def histogram(strand) do
-    %{?A => count(strand, ?A), ?T => count(strand, ?T), ?C => count(strand, ?C), ?G => count(strand, ?G)}
+    Enum.reduce([?A, ?T, ?C, ?G], %{}, fn x, acc ->
+      Map.put(acc, x, count(strand, x)) end)
   end
 end
