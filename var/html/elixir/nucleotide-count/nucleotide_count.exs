@@ -3,6 +3,7 @@ defmodule NucleotideCount do
 
   @doc """
   Counts individual nucleotides in a NucleotideCount strand.
+  lss: I didnt need the case, the implem without checking for empty list worked anyway
 
   ## Examples
 
@@ -13,9 +14,15 @@ defmodule NucleotideCount do
   1
   """
   @spec count([char], char) :: non_neg_integer
+
   def count(strand, nucleotide) do
-    instances = Enum.filter(strand, fn(x) -> x == nucleotide end) 
-    length(instances)
+    case strand do
+      [] -> 0
+      _ ->
+        instances = Enum.filter(strand, fn(x) -> x == nucleotide end) 
+        length(instances)
+    end
+    
   end
 
 
