@@ -7,7 +7,12 @@
 
 
 FROM ubuntu:14.04
+
 RUN apt-get update && apt-get install -y wget software-properties-common python-software-properties curl
+RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+RUN sudo apt-get update
+RUN sudo apt-get install -y esl-erlang
+RUN sudo apt-get install -y elixir
 
 RUN mkdir /var/html
 WORKDIR /var/html
